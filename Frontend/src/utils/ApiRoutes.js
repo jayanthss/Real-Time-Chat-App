@@ -1,4 +1,4 @@
-export const host = "http://localhost:3000";
+export const host = import.meta.env.VITE_SERVER_URL;
 export const registerRoute = `/api/auth/register`
 export const loginRoute = `/api/auth/login`
 export const SetAvatarRoute = `/api/auth/setAvatar`
