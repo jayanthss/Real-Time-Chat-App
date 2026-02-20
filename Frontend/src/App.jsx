@@ -5,7 +5,7 @@ import Chat from "./pages/chat";
 import SetAvatar from "./pages/setAvatar";
 import VideoCall from "./pages/VideoCaller";
 import PageNotFound from "./Error_Components/PageNotFound";
-import ServerDownPage from "./Error_Components/serverDown";
+import ServerDownPage from "./Error_Components/ServerDown.jsx";
 
 export default function App() {
   return (
