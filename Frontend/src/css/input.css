@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input {
+    @apply bg-transparent 
+      p-[0.8rem] 
+      border-solid 
+      border-[0.1rem] 
+      border-[#4e0eff] 
+      rounded-[0.4rem] 
+      text-white 
+      w-full 
+      text-[1rem]
+      focus:border-[#997af0]
+      focus:outline-none;
+  }
+}

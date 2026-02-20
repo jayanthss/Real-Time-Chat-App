@@ -1,0 +1,11 @@
+export const host = "http://localhost:3000";
+export const registerRoute = `/api/auth/register`
+export const loginRoute = `/api/auth/login`
+export const SetAvatarRoute = `/api/auth/setAvatar`
+export const allUsers = `/api/auth/alluser`
+export const sendMessageRoute = `/api/messages/addmsg`
+export const GetMessageRoute = `/api/messages/getmsg`
+export const tokenCheckRoute = `/api/auth/tokenCheck`
+export const verifyJwt = `/auth/verifyJwt`
+export const getUserRoute = `/api/auth/getUser`
+export const getRewriteByAi = `/api/ai/rewrite`

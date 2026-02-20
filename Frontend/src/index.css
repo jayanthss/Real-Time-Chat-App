@@ -1,0 +1,36 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+body{
+  font-family: "Inter"
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #ffffff39;
+    border-radius: 1rem;
+  }
+}
+
+@layer components {
+  /* .emoji-categories {
+    button {
+      filter: contrast(0);
+    }
+  } */
+  .emoji-scroll-wrapper::-webkit-scrollbar {
+    background-color: #080420;
+    width: 5px;
+    &-thumb {
+      background-color: #9a86f3;
+    }
+  }
+}
