@@ -6,6 +6,12 @@ A modern, secure, and feature-rich real-time chat application built with React, 
 
 ## 📋 Table of Contents
 
+
+## <a name="features"></a>✨ Features
+...
+## <a name="tech-stack"></a>🛠 Tech Stack
+...
+## <a name="project-architecture"></a>🏗 Project Architecture
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Project Architecture](#project-architecture)
