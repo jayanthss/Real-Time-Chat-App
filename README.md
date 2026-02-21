@@ -480,7 +480,7 @@ api.interceptors.response.use(
 ### 3. **CORS Configuration**
 ```javascript
 cors({
-  origin: "http://localhost:5173",
+  origin: "Client URL",
   credentials: true,
 })
 ```
