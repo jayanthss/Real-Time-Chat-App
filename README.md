@@ -6,9 +6,6 @@ A modern, secure, and feature-rich real-time chat application built with React, 
 
 ## 📋 Table of Contents
 
-
-
----
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Project Architecture](#project-architecture)
@@ -182,7 +179,7 @@ Backend/
 
 ---
 
-## 📦 Prerequisites
+<a name="prerequisites"></a>📦 Prerequisites
 
 Before setting up the project, ensure you have:
 
@@ -195,7 +192,7 @@ Before setting up the project, ensure you have:
 
 ---
 
-## 🚀 Installation & Setup
+<a name="installation-setup"></a>🚀 Installation & Setup
 
 ### Step 1: Clone the Repository
 
@@ -232,7 +229,7 @@ touch .env.local
 
 ---
 
-## ⚙️ Environment Configuration
+<a name="environment-configuration"></a>⚙️ Environment Configuration
 
 ### Backend Environment Variables (.env)
 
@@ -270,7 +267,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ---
 
-## 🎯 Running the Application
+<a name="running-the-application"></a>🎯 Running the Application
 
 ### Backend Server
 
@@ -306,7 +303,7 @@ npm run preview
 
 ---
 
-## 📡 API Endpoints
+<a name="api-endpoints"></a>📡 API Endpoints
 
 ### User Authentication
 
@@ -337,7 +334,7 @@ npm run preview
 
 ---
 
-## 🛡️ Error Handling
+<a name="error-handling"></a>🛡️ Error Handling
 
 ### Backend Error Handling
 
@@ -431,7 +428,7 @@ api.interceptors.response.use(
 
 ---
 
-## 🔌 Socket Events
+<a name="socket-events"></a>🔌 Socket Events
 
 ### Client-to-Server Events
 
@@ -461,7 +458,7 @@ api.interceptors.response.use(
 
 ---
 
-## 🔐 Security Features
+<a name="security-features"></a>🔐 Security Features
 
 ### 1. **End-to-End Encryption**
 - **Algorithm**: AES-256-CBC (Advanced Encryption Standard)
@@ -505,7 +502,7 @@ cors({
 
 ---
 
-## 📁 Project Structure Details
+<a name="project-structure"></a>📁 Project Structure
 
 ### Key Files
 
