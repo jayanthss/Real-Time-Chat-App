@@ -7,11 +7,8 @@ A modern, secure, and feature-rich real-time chat application built with React, 
 ## 📋 Table of Contents
 
 
-## <a name="features"></a>✨ Features
-...
-## <a name="tech-stack"></a>🛠 Tech Stack
-...
-## <a name="project-architecture"></a>🏗 Project Architecture
+
+---
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Project Architecture](#project-architecture)
@@ -29,7 +26,7 @@ A modern, secure, and feature-rich real-time chat application built with React, 
 
 ---
 
-## ✨ Features
+## <a name="features"></a>✨ Features
 
 ### Core Functionality
 
@@ -88,7 +85,7 @@ A modern, secure, and feature-rich real-time chat application built with React, 
 
 ---
 
-## 🛠 Tech Stack
+## <a name="tech-stack"></a>🛠 Tech Stack
 
 ### Frontend
 - **Framework**: React 19.2.0
@@ -128,7 +125,7 @@ A modern, secure, and feature-rich real-time chat application built with React, 
 
 ---
 
-## 🏗 Project Architecture
+## <a name="project-architecture"></a>🏗 Project Architecture
 
 ### Frontend Architecture
 ```
