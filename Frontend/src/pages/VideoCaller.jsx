@@ -200,14 +200,12 @@ function VideoCall() {
 
   return (
     <>
-      {/* <h1 className={userStatus ? "bg-red-600" : "bg-green-900"}>Welcome to Video--Call ✅✅✅</h1> */}
-
-      <div className="relative w-screen h-screen bg-black">
+      <div className="relative w-screen h-screen bg-gradient-to-br from-[#071226] via-[#0b1220] to-[#0f1724]">
         <video
           ref={remoteVideoRef}
           autoPlay
           playsInline
-          className="w-full h-full object-fill bg-black"
+          className="w-full h-full object-cover"
         />
 
         <video
@@ -215,55 +213,41 @@ function VideoCall() {
           autoPlay
           playsInline
           muted
-          className="
-    absolute bottom-6 right-6
-    w-[18rem] aspect-video
-    rounded-xl
-    border border-gray-400
-    object-fill
-    bg-black
-  "
+          className="absolute bottom-12 right-8 w-64 aspect-video rounded-2xl border-2 border-white shadow-[0_10px_30px_rgba(0,0,0,0.8)] object-cover"
         />
       </div>
 
-      <div className="absolute bottom-[3rem] bg-transparent buttons w-[100vw] h-[10vh] flex justify-center ">
-        <div className="icons bg-gray-700 bg-opacity-[80%] rounded-2xl w-[45vw] h-[12vh] flex justify-center gap-6 items-center">
-          <div
-            className="muteVideo  flex flex-col gap-0.3 items-center"
-            onClick={handle_Video}
-          >
-            <div className="video-mute p-[1rem] cursor-pointer rounded-2xl w-[3.9rem] h-[2.6rem] flex justify-center items-center">
-              {video ? (
-                <BsCameraVideoOffFill size={"2.9rem"} fill="white" />
-              ) : (
-                <BsCameraVideo size={"2.9rem"} fill="white" />
-              )}
+      <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
+        <div className="bg-black/40 backdrop-blur-md rounded-3xl px-12 py-6 border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.6)]">
+          <div className="flex items-end justify-center gap-8">
+            <div className="flex flex-col items-center gap-3 cursor-pointer group" onClick={handle_Video}>
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-800 group-hover:from-gray-600 group-hover:to-gray-700 transition-all shadow-lg">
+                {video ? (
+                  <BsCameraVideoOffFill size={28} fill="white" />
+                ) : (
+                  <BsCameraVideo size={28} fill="white" />
+                )}
+              </div>
+              <span className="text-white text-sm font-medium">{video ? "Camera Off" : "Camera On"}</span>
             </div>
-            <div className="video-mute  text-white text-[13px]">Video Mute</div>
-          </div>
 
-          <div
-            className="muteAduio flex flex-col gap-1 items-center"
-            onClick={handle_mic}
-          >
-            <div className="mute-audio p-[1rem] cursor-pointer rounded-2xl w-[3.9rem] h-[2.6rem] flex justify-center items-center  ">
-              {mic ? (
-                <MdMicOff size={"2.9rem"} fill="white" />
-              ) : (
-                <MdMicNone size={"2.9rem"} fill="white" />
-              )}
+            <div className="flex flex-col items-center gap-3 cursor-pointer group" onClick={handle_mic}>
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-800 group-hover:from-gray-600 group-hover:to-gray-700 transition-all shadow-lg">
+                {mic ? (
+                  <MdMicOff size={28} fill="white" />
+                ) : (
+                  <MdMicNone size={28} fill="white" />
+                )}
+              </div>
+              <span className="text-white text-sm font-medium">{mic ? "Mic Off" : "Mic On"}</span>
             </div>
-            <div className="text-mute text-white text-[13px]">Mute</div>
-          </div>
 
-          <div className="endcall flex flex-col gap-1 items-center">
-            <div
-              className="end-call  cursor-pointer rounded-2xl w-[3.8rem] h-[2.6rem] flex justify-center items-center bg-red-500"
-              onClick={handle_end_call}
-            >
-              <MdCallEnd size={"1.8rem"} fill="white" />
+            <div className="flex flex-col items-center gap-3 cursor-pointer group" onClick={handle_end_call}>
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-red-600 to-red-700 group-hover:from-red-500 group-hover:to-red-600 transition-all shadow-lg">
+                <MdCallEnd size={28} fill="white" />
+              </div>
+              <span className="text-white text-sm font-medium">End Call</span>
             </div>
-            <div className="text-end text-white text-[13px]">End Call</div>
           </div>
         </div>
       </div>

@@ -18,6 +18,7 @@ export default function Chat_Input({ handleSendMessage, currchat }) {
   const [isclickemoji, setisclickemoji] = useState(false);
   const [useremoji, setuseremoji] = useState(null);
   const [userInput, setuserInput] = useState("");
+  const [send_enable, set_send_enable] = useState(false);
   const textareaRef = useRef(null);
 
   // const [previewText,setpreviewText] = useRef(null)
@@ -35,6 +36,11 @@ export default function Chat_Input({ handleSendMessage, currchat }) {
 
   const Input_change = (event) => {
     setuserInput(event.target.value);
+    if(event.target.value != ""){
+      set_send_enable(true)
+    }else{
+      set_send_enable(false)
+    }
     const textarea = textareaRef.current;
 
     // reset height first
@@ -91,19 +97,19 @@ export default function Chat_Input({ handleSendMessage, currchat }) {
 
   return (
     <>
-      <div className="container  flex justify-center items-center px-8  overflow-visible w-[70vw] resize-y border-[#1E293B] border-t">
-        <div className="Input_field flex items-center justify-center w-[60vw] p-2 rounded-[2rem] gap-[0.5rem] bg-[#21212a]  resize-y absolute bottom-10">
+      <div className="container flex justify-center items-center px-6 overflow-visible  border-t border-[#1E293B]">
+        <div className="Input_field  flex items-center justify-between w-[60vw] max-w-[72vw]  p-3 rounded-2xl gap-4 bg-[#21212a]  backdrop-blur-sm border border-white/5 shadow-[0_8px_30px_rgba(2,6,23,0.6)] absolute bottom-8">
           <div className="button_container flex items-center justify-center text-white">
             <div className="emoji relative">
               <BsEmojiSmileFill
                 onClick={click_emoji}
-                className="text-2xl text-[#ffff00c8] cursor-pointer"
+                className="text-2xl text-yellow-400 cursor-pointer"
+                aria-label="Emoji picker"
               />
 
               {isclickemoji && (
-                <div className="absolute bottom-full mb-3 left-0 z-50">
+                <div className="absolute bottom-full mb-5 left-1 z-50">
                   <EmojiPicker
-                    className=""
                     searchDisabled
                     theme={Theme.DARK}
                     onEmojiClick={choosen_emoji}
@@ -117,61 +123,86 @@ export default function Chat_Input({ handleSendMessage, currchat }) {
           </div>
 
           <form
-            className="input_container w-[50vw]  flex items-center gap-5"
-            onSubmit={(e) => {
-              sendChat(e);
-            }}
+            className="input_container flex items-center gap-4 w-full"
+            onSubmit={sendChat}
           >
             <textarea
               ref={textareaRef}
-              className="w-full custom-scrollbar bg-transparent resize-none max-h-[7rem] overflow-y-scroll text-white border-none pl-4  text-lg focus:outline-none"
+              className="w-full custom-scrollbar bg-transparent resize-none max-h-[8rem] overflow-y-auto text-white border-none pl-4 text-lg focus:outline-none placeholder-gray-400"
               rows={1}
-              placeholder="Type Message"
+              placeholder="Type your message..."
               value={userInput}
               onChange={Input_change}
             />
-            
-
-            {hideSend && (
-              <Buttonfactory variant="icon" className="p-3 rounded-full flex justify-center items-center " Icon= {IoMdSend} Icon_Style = "text-white text-[1.1rem]" user_input={userInput} iconName = "Send"/>
+            {send_enable && hideSend && (
+              <Buttonfactory
+                variant="icon"
+                className="p-2 rounded-full flex justify-center items-center bg-gradient-to-r from-[#6c4dff] to-[#4e0eff] shadow-md"
+                Icon={IoMdSend}
+                Icon_Style="text-white text-[1.4rem]"
+                user_input={userInput}
+                iconName="Send"
+              />
             )}
           </form>
 
           {!hideSend ? (
-            <div className="previewBtn flex gap-3 text-[white]">
-              <div className="generate_Btn p-3 rounded-full flex justify-center items-center bg-[#6d4beb]">
+            <div className="previewBtn flex gap-3 text-white">
+              <div className="generate_Btn p-3 rounded-full flex justify-center items-center bg-gradient-to-r from-[#6c4dff] to-[#4e0eff]">
                 {!loading ? (
-                  <Buttonfactory variant="icon" className="" Icon= {FaArrowsRotate} Icon_Style = "text-white text-[1.1rem]" onClick={() => handlePreviewBtn("user_regenerate")}/>
-
+                  <Buttonfactory
+                    variant="icon"
+                    className=""
+                    Icon={FaArrowsRotate}
+                    Icon_Style="text-white text-[1.1rem]"
+                    onClick={() => handlePreviewBtn("user_regenerate")}
+                  />
                 ) : (
-                  <div className=" bg-[#6b4beb] p-1 rounded-full flex items-center justify-center">
-                    <SyncLoader loading={true} color="#ffff" size={7} />
+                  <div className="p-1 rounded-full flex items-center justify-center bg-[#6b4beb]">
+                    <SyncLoader loading={true} color="#fff" size={7} />
                   </div>
                 )}
               </div>
-              
-              {<Buttonfactory variant="icon" className="p-3 rounded-full flex justify-center items-center bg-[#6d4beb]" Icon= {SlClose} Icon_Style = "text-white text-[1.1rem]" onClick={() => handlePreviewBtn("user_not_Accpted")}/>}
 
-              {<Buttonfactory variant="icon" className="p-3 rounded-full flex justify-center items-center bg-[#6d4beb]" Icon= {FaCheck} Icon_Style = "text-white text-[1.1rem]" onClick={() => handlePreviewBtn("user_accepted")}/>}
-              
+              <Buttonfactory
+                variant="icon"
+                className="p-3 rounded-full flex justify-center items-center bg-[#2b2546]"
+                Icon={SlClose}
+                Icon_Style="text-white text-[1.1rem]"
+                onClick={() => handlePreviewBtn("user_not_Accpted")}
+              />
 
-            
+              <Buttonfactory
+                variant="icon"
+                className="p-3 rounded-full flex justify-center items-center bg-[#2b2546]"
+                Icon={FaCheck}
+                Icon_Style="text-white text-[1.1rem]"
+                onClick={() => handlePreviewBtn("user_accepted")}
+              />
             </div>
           ) : (
             <>
               {loading ? (
-                <div className=" bg-[#6b4beb] p-[0.7rem] rounded-full flex items-center justify-center">
-                  <SyncLoader loading={true} color="#ffff" size={7} />
+                <div className="p-[0.7rem] rounded-full flex items-center justify-center bg-gradient-to-r from-[#6c4dff] to-[#4e0eff]">
+                  <SyncLoader loading={true} color="#fff" size={7} />
                 </div>
               ) : (
-                <Buttonfactory variant="icon" className="text-[white] p-[0.7rem] rounded-full flex justify-center items-center cursor-pointer " Icon= {FaMagic} Icon_Style = "text-white text-[1.1rem]" user_input={userInput} onClick={handleRewrite}/>
-
+                send_enable && <Buttonfactory
+                  variant="icon"
+                  className="text-white p-[0.6rem] rounded-full flex justify-center items-center cursor-pointer bg-gradient-to-r from-[#6c4dff] to-[#4e0eff]"
+                  Icon={FaMagic}
+                  Icon_Style="text-white text-[1.1rem]"
+                  user_input={userInput}
+                  onClick={handleRewrite}
+                />
               )}
             </>
           )}
         </div>
 
-        <div className="text-gray-500 text-[0.8rem] absolute bottom-3">Disclaimer : Ai Makes Mistake Review Carefully</div>
+        <div className="text-gray-400 text-xs absolute bottom-3">
+          Disclaimer: AI may make mistakes, review carefully.
+        </div>
       </div>
     </>
   );

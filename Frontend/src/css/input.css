@@ -4,16 +4,26 @@
 
 @layer components {
   .input {
-    @apply bg-transparent 
-      p-[0.8rem] 
-      border-solid 
-      border-[0.1rem] 
-      border-[#4e0eff] 
-      rounded-[0.4rem] 
-      text-white 
-      w-full 
-      text-[1rem]
-      focus:border-[#997af0]
-      focus:outline-none;
+    @apply bg-white/5 p-3 rounded-lg text-white w-full text-[1rem] placeholder:text-gray-300 border border-transparent focus:border-[#9f7cff] focus:outline-none shadow-sm transition-all;
+  }
+
+  .brand {
+    @apply flex items-center gap-4 justify-center mb-2;
+  }
+
+  .brand img {
+    @apply h-16 w-16;
+  }
+
+  .brand h1 {
+    @apply text-white uppercase text-2xl tracking-wider;
+  }
+
+  .auth-redirect {
+    @apply text-white/90 uppercase text-sm mt-3 text-center;
+  }
+
+  .glass-card {
+    @apply rounded-2xl bg-black/30 backdrop-blur-md border border-white/5;
   }
 }

@@ -93,46 +93,46 @@ export default function SetAvatar() {
   return (
     <>
       {isloading ? (
-        <div className=" cointainer flex flex-col justify-center items-center h-[100vh] gap-[3rem] w-[100vw] bg-[#131324] text-white">
-          <img src={Loader} alt="" />{" "}
+        <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-[#071226] via-[#0b1220] to-[#0f1724] text-white">
+          <img src={Loader} alt=""  />
         </div>
       ) : (
-        <div className="cointainer flex flex-col justify-center items-center h-[100vh] gap-[3rem] w-[100vw] bg-[#131324] text-white">
-          <div className="title_cointainer">
-            <h1 className="text-[30px] font-bold">
+        <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-[#071226] via-[#0b1220] to-[#0f1724] text-white">
+          <div className="relative w-[520px] flex flex-col gap-8 p-10 glass-card">
+            <h1 className="text-2xl font-bold text-center">
               Pick an avatar as your profile picture
             </h1>
-          </div>
-          <div className="avatar flex gap-[0.5rem] border-transparent border-[0.4rem] border-solid rounded-[5rem] justify-center items-center transition-all ease-in-out duration-500">
-            {avatars.map((avatar, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() => {
-                    setSelectedAvatar(index);
-                  }}
-                  className={`avatar cursor-pointer transition-all duration-300 rounded-[5rem] p-2 ${
-                    selectedAvatar === index
-                      ? "border-8 border-[#4c0bfd] "
-                      : "border-8 border-transparent"
-                  }`}
-                >
-                  <img
-                    src={avatar}
-                    alt={`avatar-${index}`}
-                    className=" h-[6rem] cursor-pointer"
-                  />
-                </div>
-              );
-            })}
-          </div>
+            <div className="flex flex-wrap justify-center gap-4 transition-all duration-500">
+              {avatars.map((avatar, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setSelectedAvatar(index);
+                    }}
+                    className={`rounded-full p-2 transition-all duration-300 cursor-pointer ${
+                      selectedAvatar === index
+                        ? "border-4 border-[#4c0bfd]"
+                        : "border-4 border-transparent"
+                    }`}
+                  >
+                    <img
+                      src={avatar}
+                      alt={`avatar-${index}`}
+                      className="h-16 w-16 rounded-full"
+                    />
+                  </div>
+                );
+              })}
+            </div>
 
-          <button
-            className="bg-[#4e0eff] text-[white] py-[0.5rem] px-[2rem] border-none font-bold cursor-pointer rounded-[0.4rem] text-[1rem] uppercase hover:bg-[#4e0eff]"
-            onClick={selectProfilePicture}
-          >
-            Set Profile Picture
-          </button>
+            <button
+              className="bg-gradient-to-r from-[#6c4dff] to-[#4e0eff] text-white w-full py-3 rounded-lg uppercase font-bold hover:opacity-95"
+              onClick={selectProfilePicture}
+            >
+              Set Profile Picture
+            </button>
+          </div>
         </div>
       )}
       <ToastContainer />

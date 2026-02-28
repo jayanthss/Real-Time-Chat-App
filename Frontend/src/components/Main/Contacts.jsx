@@ -49,6 +49,7 @@ function Contacts({ contacts, curruser, currchat, onlineUser, setcontact }) {
       const data = await api.get(`${allUsers}/${curruser._id}`);
       setcontact(data.data);
     } else {
+      setcontact(false)
       setNoFriends(true);
     }
   };
@@ -56,88 +57,82 @@ function Contacts({ contacts, curruser, currchat, onlineUser, setcontact }) {
   return (
     <>
       {currUserImage && currUsername && (
-        <div className="cointainer grid grid-rows-[10%_8%_72%_10%] overflow-hidden bg-[#121217]">
-          <div className="Brand flex items-center ml-9 gap-[1rem]">
-            <img className="h-[2.1rem]" src={Logo} alt="logo" />
-            <h3 className="text-[white] uppercase font-extrabold text-[20px] ">
+        <div className="cointainer grid grid-rows-[10%_8%_72%_10%] overflow-hidden bg-black/20 backdrop-blur-sm">
+          <div className="Brand flex items-center ml-8 gap-3 py-4">
+            <img className="h-10 w-10" src={Logo} alt="logo" />
+            <h3 className="text-white uppercase font-extrabold text-2xl tracking-wide">
               SuperChat
             </h3>
           </div>
 
-          <div className="search flex justify-center items-center  border-t-[1px] border-solid border-[#1E293B] relative">
-
-            <div className="serachbar flex items-center justify-center gap-4  bg-[hsl(221.25deg,15.69%,20%)] rounded-lg p-2 w-[80%] h-[80%]">
-
-            <IoSearchSharp size={21} color="white" fill="white"/>
-
-            <input
-              className=" focus:border-[#1E1B4B] focus:outline-none bg-[hsl(221.25deg,15.69%,20%)] text-white  w-[80%] "
-              type="text"
-              value={searchuser}
-              onChange={searchFriends}
-              placeholder="Search Conversations.."
-              
-            />
+          <div className="search flex justify-center items-center border-t border-[#1E293B] p-3">
+            <div className="serachbar flex items-center gap-3 bg-[hsl(218,15%,14%)] backdrop-blur-sm rounded-full px-4 py-2 w-[90%]">
+              <IoSearchSharp size={20} className="text-white" />
+              <input
+                className="flex-1 bg-transparent placeholder-gray-400 text-white focus:outline-none"
+                type="text"
+                value={searchuser}
+                onChange={searchFriends}
+                placeholder="Search Conversations.."
+              />
             </div>
           </div>
 
-          <div className="contacts flex flex-col items-center overflow-auto gap-[0.8rem] custom-scrollbar pt-4 border-solid ">
-            {contacts.map((contact, index) => {
+          <div className="contacts flex flex-col items-center overflow-auto gap-3 custom-scrollbar pt-4">
+            {contacts && contacts.map((contact, index) => {
               const onlineusers = new Set(onlineUser);
               let isOnline = onlineusers.has(contact._id);
 
               return (
                 <div
-                  className={`${
-                    index === currSelected ? "bg-[#1E1B4B]" : ""
-                  }  min-h-[5rem] w-[90%] cursor-pointer rounded-[1rem] p-[0.4rem] gap-[1rem] flex items-center transition duration-[500] ease-in-out justify-between ${
-                    index === currSelected ? "" : "hover:bg-[#1b1b22]"
+                  className={`flex items-center justify-between w-[90%] p-2 rounded-xl transition-colors duration-100 cursor-pointer ${
+                    index === currSelected
+                      ? "bg-gradient-to-r from-[#4e0eff]/40 to-[#6c4dff]/40"
+                      : "hover:bg-[hsl(222,15%,13%)]"
                   }`}
                   key={index}
                   onClick={() => {
                     changeCurrChat(index, contact);
                   }}
                 >
-                  <div className="avatar_username flex items-center p-[0.4rem] gap-[1rem] ">
-                    <div className="avatar ">
-                      <img
-                        className="h-[3.4rem]"
-                        src={contact.avatarImage}
-                        alt="avatar"
-                      />
-                    </div>
-                    <div className="username">
-                      <h3 className="text-[white] text-[1.3rem]">
-                        {contact.username}
-                      </h3>
-                    </div>
+                  <div className="avatar_username flex items-center gap-3">
+                    <img
+                      className="h-14 w-14 rounded-full"
+                      src={contact.avatarImage}
+                      alt="avatar"
+                    />
+                    <h3 className="text-white text-lg font-medium">
+                      {contact.username}
+                    </h3>
                   </div>
 
                   <div
-                    className={`${
-                      onlineusers.has(contact._id) ? "bg-green-600" : ""
-                    } online  w-1 h-3 rounded-[6rem] pr-[0.6rem] mr-[0.4rem]`}
+                    className={`online w-3 h-3 rounded-full ${
+                      isOnline ? "bg-green-400" : ""
+                    }`}
                   ></div>
                 </div>
               );
             })}
           </div>
 
-          {nofriends ? (
-            <div className="absolute top-[8.5rem] w-[29%] h-[51%] bg-[#121217] text-[#687893] flex justify-center pt-7">
+          {nofriends && (
+            <div className="absolute left-[8rem] top-[4rem] w-[39%] h-[51%] flex justify-center items-center  text-gray-400 ">
               --- No Conversation ---
             </div>
-          ) : (
-            ""
           )}
 
-          <div className="current-user bg-[#0d0d30] w-[98%] flex justify-start p-9 items-center gap-[1rem]">
-            <div className="avatar">
-              <img className="h-[3.5rem]" src={currUserImage} alt="avatar" />
-            </div>
+          <div className="current-user bg-[hsl(218,14%,11%)] backdrop-blur-sm w-[100%] flex items-center gap-4 px-6 py-4 rounded-2xl">
+            <img
+              className="h-14 w-14 rounded-full"
+              src={currUserImage}
+              alt="avatar"
+            />
             <div className="username">
-              <h2 className="text-[white] text-[1.1rem]">{currUsername}</h2>
-              <h2 className="text-[#56fe02] text-[0.7rem]">🟢Online</h2>
+              <h2 className="text-white text-lg font-semibold">
+                {currUsername}
+              </h2>
+              <h2 className="text-green-400 text-sm">🟢 Online</h2>
             </div>
           </div>
         </div>

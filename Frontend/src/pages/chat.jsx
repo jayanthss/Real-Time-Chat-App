@@ -101,26 +101,26 @@ function chat() {
   };
 
   return (
-    // <div className="Cointainer h-[100vh] w-[100vw] flex flex-col justify-center items-center gap-[1rem] bg-[#131324] ">
-    <div className="inside_coin h-[100vh] w-[100vw] bg-[#131324] grid grid-cols-[30%_70%]  gap-[0.1rem] overflow-hidden  ">
-      <Contacts
-        contacts={contact}
-        curruser={curruser}
-        currchat={handleChatchange}
-        onlineUser={onlineUser}
-        setcontact = {setcontact}
-      />
-      {isloaded && currChat === undefined ? (
-        <Welcome />
-      ) : (
-        <ChatCointainer
-          currchat={currChat}
+    <div className="h-screen w-screen bg-gradient-to-br from-[#071226] via-[#0b1220] to-[#0f1724] flex items-center justify-center">
+      <div className="relative w-full h-full  grid grid-cols-[30%_70%] gap-1 bg-black/40 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden">
+        <Contacts
+          contacts={contact}
           curruser={curruser}
-          socket={socket}
+          currchat={handleChatchange}
+          onlineUser={onlineUser}
+          setcontact={setcontact}
         />
-      )}
+        {isloaded && currChat === undefined ? (
+          <Welcome />
+        ) : (
+          <ChatCointainer
+            currchat={currChat}
+            curruser={curruser}
+            socket={socket}
+          />
+        )}
+      </div>
     </div>
-    // </div>
   );
 }
 
